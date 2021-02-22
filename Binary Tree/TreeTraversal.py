@@ -1,3 +1,4 @@
+from collections import deque
 class Node(object):
     def __init__(self,data):
         self.data=data
@@ -77,6 +78,17 @@ def inOrderIterative(root):
                 print(node.data,end=" ")
                 current=node.right
 
+def levelorderItrative(root):
+    if root is not None:
+        l=deque()
+        l.append(root)
+        while l:
+            node=l.popleft()
+            if node is not None:
+                print(node.data,end=" ")
+                if node.left is not None:l.append(node.left)
+                if node.right is not None:l.append(node.right)
+
 root=BuildTree()
 
 preOrderRecusrsive(root)
@@ -90,4 +102,6 @@ print()
 postOrderRecursive(root)
 print()
 postOrderIterative(root)
+print()
+levelorderItrative(root)
 

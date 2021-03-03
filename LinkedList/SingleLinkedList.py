@@ -120,4 +120,3 @@ class SingleLinkedList(object):
             node.setNext(node.getNext().getNext())
         self.length -= 1
 
-

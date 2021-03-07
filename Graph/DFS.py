@@ -34,7 +34,7 @@ class Graph(object):
 
 
 
-g =Graph()
+g = Graph()
 g.buildGraph()
 g.DFS()
 

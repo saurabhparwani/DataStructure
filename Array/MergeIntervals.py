@@ -16,8 +16,18 @@
 
 # This Method will Sort the Intervals depending upon their starting time and then we know that
 def mergeInterValUsingSorting(arr):
-    pass
-
+    arr.sort(key= lambda x:x[0])
+    result = []
+    curr = arr[0]
+    for i in range(1,len(arr)):
+        # Check for Overlap
+        if curr[1]>=arr[i][0]:
+            curr[1] = max(arr[i][1],curr[1])
+        else:
+            result.append(curr)
+            curr = arr[i]
+    result.append(curr)
+    print(result)
 
 
 # This Method will Pick one element at once and then it will traverse complete array to merge intervals.
@@ -25,6 +35,7 @@ def mergeInterValUsingSorting(arr):
 def mergeIntervalsBruteForce(arr):
 
     size =len(arr)
+    arr.sort(key= lambda x:x[0])
     # Outer Loop to Pick first element and compare in complete array
     for i in range(0,size):
         if arr[i]:
@@ -36,6 +47,7 @@ def mergeIntervalsBruteForce(arr):
                    arr[j] = [-1,-1]
             arr[i] = curr
 
+
     # To remove the None Object
     result = []
     for i in arr:
@@ -44,5 +56,10 @@ def mergeIntervalsBruteForce(arr):
     return result
 
 
-intervals = [[1,3],[2,4],[5,7],[6,8]]
+# Driver Code.
+
+intervals = [[1,2],[3,5],[6,7],[8,10],[12,16],[4,9]]
 print(mergeIntervalsBruteForce(intervals))
+
+intervals_two = [[1,2],[3,5],[6,7],[8,10],[12,16],[4,9]]
+mergeInterValUsingSorting(intervals_two)

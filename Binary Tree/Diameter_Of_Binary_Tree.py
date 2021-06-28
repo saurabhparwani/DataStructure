@@ -40,8 +40,8 @@ def height(root):
 
 
 def diameter(root):
-    if root is None :
-        return  0
+    if root is None:
+        return 0
 
     # Get the Left & Rigth Height
     left_height = height(root.left)

@@ -1,21 +1,23 @@
 from collections import defaultdict
+
 class Node(object):
     def __init__(self,data):
         self.data=data
         self.left=None
         self.right=None
         self.hd = 0
+
     def __str__(self):
         return str(self.data)
 
 def BuildTree():
     root = Node(50)
-    root.left=Node(20)
-    root.left.left=Node(10)
-    root.left.right=Node(30)
-    root.right=Node(80)
-    root.right.left=Node(60)
-    root.right.right=Node(100)
+    root.left = Node(20)
+    root.left.left = Node(10)
+    root.left.right = Node(30)
+    root.right = Node(80)
+    root.right.left = Node(60)
+    root.right.right = Node(100)
     # root.left.right.left = Node(200)
     return root
 
@@ -53,5 +55,6 @@ def printVertcialOrder(root):
         print(map[i], end = " ")
 
 
+# Driver Code
 root = BuildTree()
 printVertcialOrder(root)

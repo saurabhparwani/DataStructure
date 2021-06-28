@@ -43,13 +43,14 @@ def merge(a,left,middle,right):
 
 def merge_sort(a,left,right):
     if left < right:
-        middle = (left+(right-1))//2     #  It is Same as (left + right ) //2
+        # middle = (left+(right-1))//2     #  It is Same as (left + right ) //2
+        middle = left + (right - left)//2
         merge_sort(a,left,middle)
         merge_sort(a,middle+1,right)
         merge(a,left,middle,right)
 
 
-a=[33, 42, 9, 37, 8, 47, 5, 29, 49, 31, 4, 48, 16, 22, 26]
+a=[33, 42, 9,9,8,4, 37, 8, 47, 5, 29, 49, 31, 4, 48, 16, 22, 26]
 print(a)
 merge_sort(a,0,len(a)-1)
 print(a)

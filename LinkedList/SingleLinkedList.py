@@ -120,3 +120,28 @@ class SingleLinkedList(object):
             node.setNext(node.getNext().getNext())
         self.length -= 1
 
+
+    # Find the middle Node of the LinkedList.
+
+    def printMiddleElement(self):
+        if self.head is None:
+            print("List is Empty")
+            return
+        slowPtr = self.head
+        fastptr = self.head
+
+        # Traverse till we can access the nodes.
+        while fastptr.getNext() and fastptr.getNext().getNext():
+            fastptr = fastptr.getNext().getNext()
+            slowPtr = slowPtr.getNext()
+
+        print("Middle Element of the Linked list is "+str(slowPtr.getData()))
+
+
+
+list = SingleLinkedList()
+list.makeLinkedList(11,8)
+list.printList()
+list.printMiddleElement()
+
+

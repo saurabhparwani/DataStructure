@@ -1,13 +1,15 @@
 class Node(object):
+
     def __init__(self,data):
-        self.data=data
-        self.left=None
-        self.right=None
+        self.data = data
+        self.left = None
+        self.right = None
+
     def __str__(self):
         return str(self.data)
 
 def BuildTree():
-    root=Node(50)
+    root = Node(50)
     root.left=Node(20)
     root.left.left=Node(10)
     root.left.right=Node(30)
@@ -34,14 +36,14 @@ def rightViewIterative(root):
     queue.append(root)
 
     while queue:
+
          count = len(queue)
-         size = count
          while count > 0:
 
             # Pop first element from Queue
             node = queue.pop(0)
 
-            # TO Check basically it is First Node or Not
+            # To Check basically it is last Node or Not
             if count==1:
                 print(node.data, end =" ")
 
@@ -70,6 +72,7 @@ def  rightViewRecursive(root,current_level):
     if current_level > max_level[0] and root:
         print(root.data,end=" ")
         max_level[0] = current_level
+
 
     # Call Same Recursive Function for Right Subtree First then for Left Subtree and increase the level by 1
 

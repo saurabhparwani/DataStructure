@@ -6,7 +6,9 @@ def printPermutations(a,l,r):
     else:
         # Swap  every character with first character one by one and call same permutations method for next l+1 size array.
         for i in range(l,r+1):
+
             a[i],a[l] = a[l],a[i]
+
             printPermutations(a,l+1,r)
 
             # Backtrack to revert previous change

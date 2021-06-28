@@ -1,60 +1,56 @@
-
 class Node(object):
     def __init__(self, data):
-      self.data = data
-      self.left = None
-      self.right = None
+        self.data = data
+        self.left = None
+        self.right = None
+
+# Recursive Method to Build Binary Tree using inorder and preorder array.
+# This method will recursively call this method for ledt & right subtree.
+def buildTreeHelper(inorder, preorder, m, start, end):
+
+    global preIndex
+    if start > end: return None
+
+    if preIndex >= len(inorder): return None
+
+    # Make current node from pre order as root Node.
+    node = Node(preorder[preIndex])
+    preIndex += 1
+
+    if start == end : return node
+
+    # Get the index of root node from in order array so we can recursively call the method.
+    index = m[node.data]
+
+    # Call for Left Subtree
+    node.left = buildTreeHelper(inorder, preorder, m, start, index - 1)
+
+    # Call for Right Subtree
+    node.right = buildTreeHelper(inorder, preorder, m,index + 1, end)
+
+    return node
 
 
-def findIndex(curr, inorder, low, high):
-    for i in range(low, high+1):
-        if inorder[i] == curr:
-            return i
+def buildTree(inorder, preorder,m):
 
-    return -1
+    # Store the index of elements in inorder array.
+    for i in range(len(inorder)):
+        m[inorder[i]] = i
 
-
-def buildBinaryTree(inorder, preorder, low, high):
-    if low > high:
-        return None
-
-    if currnt_index[0] == len(preorder): return None
-
-    curr = preorder[currnt_index[0]]
-    root = Node(curr)
-    currnt_index[0] += 1
-    if low == high:
-        return root
-
-    index_in_inorder = findIndex(curr, inorder, low, high)
+    return buildTreeHelper(inorder, preorder, m,0, len(inorder) - 1)
 
 
-    root.left = buildBinaryTree(inorder, preorder, low, index_in_inorder-1)
-
-    root.right = buildBinaryTree(inorder, preorder, index_in_inorder + 1, high)
-
-    return root
-
-
-def preorderTraversal(root):
-    if root:
-        print(root.data,end =" ")
-        preorderTraversal(root.left)
-        preorderTraversal(root.right)
-
-def inOrderTraversal(root):
-    if root:
-        inOrderTraversal(root.left)
-        print(root.data,end =" ")
-        inOrderTraversal(root.right)
+def preorderTraversal(node):
+    if node:
+        print(node.data, end=" ")
+        preorderTraversal(node.left)
+        preorderTraversal(node.right)
 
 
 inorder = ['D', 'B', 'E', 'A', 'F', 'C']
 preorder = ['A', 'B', 'D', 'E', 'C', 'F']
-currnt_index = [0]
-
-root = buildBinaryTree(inorder, preorder,0,len(preorder)-1)
+preIndex = 0
+global m
+m = {}
+root = buildTree(inorder, preorder,m)
 preorderTraversal(root)
-print()
-inOrderTraversal(root)
-print()
